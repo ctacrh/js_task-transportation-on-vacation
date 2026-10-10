@@ -13,16 +13,15 @@ const rentalCondition = {
 function calculateRentalCost(days) {
   const totalPrice = rentalCondition.daylyCost * days;
 
-  switch (true) {
-    case days >= 3 && days < 7:
-      return totalPrice - rentalCondition.discount3Days;
-
-    case days >= 7:
-      return totalPrice - rentalCondition.discount7Days;
-
-    default:
-      return totalPrice;
+  if (days >= 7) {
+    return totalPrice - rentalCondition.discount7Days;
   }
+
+  if (days >= 3) {
+    return totalPrice - rentalCondition.discount3Days;
+  }
+
+  return totalPrice;
 }
 
 module.exports = calculateRentalCost;
